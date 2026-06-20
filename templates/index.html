@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Mi Colección</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-warning">🎮 GameVault</h1>
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-secondary text-light p-4 shadow">
+                    <h3 class="h5 mb-3 text-warning">Añadir Nuevo Juego</h3>
+                    <form action="/agregar" method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Título</label>
+                            <input type="text" name="titulo" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Plataforma</label>
+                            <input type="text" name="plataforma" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Estado</label>
+                            <select name="estado" class="form-select">
+                                <option value="Pendiente">Pendiente (Backlog)</option>
+                                <option value="Jugando">Jugando</option>
+                                <option value="Terminado">Terminado</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100">Guardar Juego</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card bg-secondary text-light p-4 shadow">
+                    <h3 class="h5 mb-3 text-warning">Mis Juegos</h3>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Plataforma</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for juego in juegos %}
+                            <tr>
+                                <td><strong>{{ juego.titulo }}</strong></td>
+                                <td>{{ juego.plataforma }}</td>
+                                <td>{{ juego.estado }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3" class="text-center text-muted">No hay juegos. ¡Añade el primero!</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
